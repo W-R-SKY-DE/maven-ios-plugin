@@ -35,9 +35,11 @@ public class ProjectBuilder {
         if (properties.get(Utils.PLUGIN_PROPERTIES.PROJECT_NAME.toString()) != null) {
             projectName = properties.get(Utils.PLUGIN_PROPERTIES.PROJECT_NAME.toString());
         }
+        
+        String srcDir = properties.get(Utils.PLUGIN_PROPERTIES.SOURCE_DIRECTORY.toString());
 
         File workDirectory = new File(mavenProject.getBasedir().toString() + "/"
-                + properties.get(Utils.PLUGIN_PROPERTIES.SOURCE_DIRECTORY.toString()) + "/"
+                + (srcDir != null && srcDir.length() > 1 ? srcDir + "/" : "")
                 + projectName);
 
         if (!workDirectory.exists()) {
