@@ -4,6 +4,8 @@ SCRIPT_LOCATION=$(cd "$(dirname "$0")"; pwd)
 PLIST_LOCATION=$1
 NEW_BUNDLE_IDENTIFIER=$2
 
+export
+ls "$PLIST_LOCATION"
 echo "OLD BUNDLE IDENTIFIER=$(/usr/libexec/PlistBuddy -c "Print CFBundleIdentifier" "$PLIST_LOCATION")"
 echo "NEW BUNDLE IDENTIFIER= $NEW_BUNDLE_IDENTIFIER"
 
