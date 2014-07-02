@@ -39,7 +39,7 @@ public class ProjectBuilder {
         String srcDir = properties.get(Utils.PLUGIN_PROPERTIES.SOURCE_DIRECTORY.toString());
 
         File workDirectory = new File(mavenProject.getBasedir().toString() + "/"
-                + (srcDir != null && srcDir.length() > 1 ? srcDir + "/" : "")
+                + (srcDir != null && !srcDir.equals (".") ? srcDir + "/" : "")
                 + projectName);
 
         if (!workDirectory.exists()) {
@@ -255,11 +255,11 @@ public class ProjectBuilder {
     }
 
     private static void executePlistScript(String scriptName, String value, File workDirectory, String projectName, final Map<String, String> properties, ProcessBuilder processBuilder) throws IOSException {
-        String infoPlistFile = "\"" + workDirectory + "/" + projectName
-                + "/" + projectName + "-Info.plist\"";
+        String infoPlistFile = workDirectory + "/" + projectName
+                + "/" + projectName + "-Info.plist";
 
         if (properties.get(Utils.PLUGIN_PROPERTIES.INFO_PLIST.toString()) != null) {
-            infoPlistFile = "\"" + workDirectory + "/" + properties.get(Utils.PLUGIN_PROPERTIES.INFO_PLIST.toString()) + "\"";
+            infoPlistFile = workDirectory + "/" + properties.get(Utils.PLUGIN_PROPERTIES.INFO_PLIST.toString());
 
         }
 
