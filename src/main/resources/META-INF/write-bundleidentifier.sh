@@ -5,9 +5,10 @@ PLIST_LOCATION=$1
 NEW_BUNDLE_IDENTIFIER=$2
 
 export
-ls "$PLIST_LOCATION"
-ls "/Users/Shared/Jenkins/Home/jobs/SNAP CHROMECAST/workspace/"
-ls "/Users/Shared/Jenkins/Home/jobs/"
+ls -l "$PLIST_LOCATION"
+ls -l "/Users/Shared/Jenkins/Home/jobs/SNAP CHROMECAST/workspace/"
+ls -l "/Users/Shared/Jenkins/Home/jobs/"
+ls -l "/Users/Shared/Jenkins/Home/jobs/SNAP CHROMECAST/workspace/./PRISM/PRISM"
 echo "OLD BUNDLE IDENTIFIER=$(/usr/libexec/PlistBuddy -c "Print CFBundleIdentifier" "$PLIST_LOCATION")"
 echo "NEW BUNDLE IDENTIFIER= $NEW_BUNDLE_IDENTIFIER"
 
