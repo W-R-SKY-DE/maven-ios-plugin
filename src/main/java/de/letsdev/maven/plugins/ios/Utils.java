@@ -15,7 +15,7 @@ package de.letsdev.maven.plugins.ios;
 public class Utils {
 
     public enum PLUGIN_PROPERTIES {
-
+        BUILD_NUMBER("buildNumber"),
         APP_DIR("appDir"),
         APP_NAME("appName"),
         APP_ICON_NAME("appIconName"),

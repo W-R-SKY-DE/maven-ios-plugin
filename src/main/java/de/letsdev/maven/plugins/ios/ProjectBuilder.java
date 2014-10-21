@@ -78,13 +78,15 @@ public class ProjectBuilder {
         if (properties.get(Utils.PLUGIN_PROPERTIES.IPA_VERSION.toString()) != null) {
             projectVersion = properties.get(Utils.PLUGIN_PROPERTIES.IPA_VERSION.toString());
         }
+        
+        String buildnumber = properties.get(Utils.PLUGIN_PROPERTIES.BUILD_NUMBER.toString());
 
         ProcessBuilder processBuilder = new ProcessBuilder("agvtool", "new-marketing-version", projectVersion);
         processBuilder.directory(workDirectory);
         CommandHelper.performCommand(processBuilder);
 
         // Run agvtool to stamp version
-        processBuilder = new ProcessBuilder("agvtool", "new-version", "-all", projectVersion);
+        processBuilder = new ProcessBuilder("agvtool", "new-version", "-all", projectVersion + (buildnumber != null && !buildnumber.equals ("null") ? "." + buildnumber : ""));
         processBuilder.directory(workDirectory);
         CommandHelper.performCommand(processBuilder);
 

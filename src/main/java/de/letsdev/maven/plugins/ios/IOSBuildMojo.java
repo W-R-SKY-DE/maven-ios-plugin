@@ -134,7 +134,14 @@ public class IOSBuildMojo extends AbstractMojo {
 	 * @parameter
 	 * 		expression="${ios.buildId}"
 	 */
-	private String buildId;	
+	private String buildId;
+    
+    /**
+	 * build id
+	 * @parameter
+	 * 		expression="${ios.buildNumber}"
+	 */
+	private String buildNumber;
 	
 	/**
 	 * target
@@ -196,6 +203,7 @@ public class IOSBuildMojo extends AbstractMojo {
             this.addProperty(properties, Utils.PLUGIN_PROPERTIES.TARGET_DIR.toString(), targetDir);
             this.addProperty(properties, Utils.PLUGIN_PROPERTIES.CONFIGURATION.toString(), this.configuration);
             this.addProperty(properties, Utils.PLUGIN_PROPERTIES.BUILD_ID.toString(), this.buildId);
+            this.addProperty(properties, Utils.PLUGIN_PROPERTIES.BUILD_NUMBER.toString(), this.buildNumber);
             this.addProperty(properties, Utils.PLUGIN_PROPERTIES.SCHEME.toString(), this.scheme);
             this.addProperty(properties, Utils.PLUGIN_PROPERTIES.TARGET.toString(), this.target);
             this.addProperty(properties, Utils.PLUGIN_PROPERTIES.KEYCHAIN_PATH.toString(), this.keychainPath);
