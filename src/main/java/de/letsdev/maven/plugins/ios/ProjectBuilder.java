@@ -82,13 +82,18 @@ public class ProjectBuilder {
         String buildnumber = properties.get(Utils.PLUGIN_PROPERTIES.BUILD_NUMBER.toString());
 
         ProcessBuilder processBuilder = new ProcessBuilder("agvtool", "new-marketing-version", projectVersion);
-        processBuilder.directory(workDirectory);
-        CommandHelper.performCommand(processBuilder);
-
-        // Run agvtool to stamp version
-        processBuilder = new ProcessBuilder("agvtool", "new-version", "-all", projectVersion + (buildnumber != null && !buildnumber.equals ("null") ? "." + buildnumber : ""));
-        processBuilder.directory(workDirectory);
-        CommandHelper.performCommand(processBuilder);
+//        processBuilder.directory(workDirectory);
+//        CommandHelper.performCommand(processBuilder);
+//
+//        // Run agvtool to stamp version
+//        processBuilder = new ProcessBuilder("agvtool", "new-version", "-all", projectVersion + (buildnumber != null && !buildnumber.equals ("null") ? "." + buildnumber : ""));
+//        processBuilder.directory(workDirectory);
+//        CommandHelper.performCommand(processBuilder);
+        
+        // Run PlistPuddy to stamp build if a build version is specified
+            executePlistScript("write-buildnumber2.sh",  "CFBundleShortVersionString " + projectVersion, workDirectory, projectName, properties, processBuilder);
+            executePlistScript("write-buildnumber2.sh",  "CFBundleVersion " +projectVersion + (buildnumber != null && !buildnumber.equals ("null") ? "." + buildnumber : ""), workDirectory, projectName, properties, processBuilder);
+        
 
         // Run PlistPuddy to stamp build if a build id is specified
         if (properties.get(Utils.PLUGIN_PROPERTIES.BUILD_ID.toString()) != null) {
